@@ -1,13 +1,20 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { Component } from 'react';
-// import axios from 'axios';
+import Header from './Header.js';
+import Main from './Main.js';
+import Footer from './Footer.js';
+import Container from 'react-bootstrap/Container';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
-    return <h1> Hello World </h1>;
+    return (
+      <Container fluid>
+        <Header title="City Explorer" />
+        <Main />
+        <Footer text="Author: Harvey Lucas" />
+      </Container>
+    );
   }
 }
 
