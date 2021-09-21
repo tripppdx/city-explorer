@@ -35,6 +35,7 @@ export default class Main extends Component {
         error: true,
         location: '',
       });
+      this.props.showModal();
     }
   };
   render() {
