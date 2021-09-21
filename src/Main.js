@@ -12,10 +12,13 @@ export default class Main extends Component {
       searchQuery: '',
       location: {},
       error: false,
+      // mapUrl: '',
     };
   }
   getLocation = async () => {
     const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchQuery}&format=json`;
+
+    // const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=10`;
 
     try {
       const response = await axios.get(url);
@@ -24,6 +27,7 @@ export default class Main extends Component {
       this.setState({
         location,
         error: false,
+        // mapUrl: mapUrl,
       });
     } catch (error) {
       console.error('Unable to find city', this.state.searchQuery);
@@ -53,6 +57,11 @@ export default class Main extends Component {
             <h2>The city is: {this.state.location.display_name}</h2>
             <h3>Latitude: {this.state.location.lat}</h3>
             <h3>Longitude: {this.state.location.lon}</h3>
+            {/* <Map location={this.state.location} map={''} /> */}
+            <img
+              src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=10`}
+              alt={this.state.location.display_name}
+            ></img>
           </Container>
         )}
       </Container>
