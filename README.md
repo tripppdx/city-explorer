@@ -20,9 +20,9 @@
 React.js
 node.js
 
-![image](./public/wrrc.JPG)
+![image](./public/wrrc.png)
 
-![image](./public/7.2.JPG)
+![image](./public/7.2.jpeg)
 
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
