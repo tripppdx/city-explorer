@@ -23,16 +23,43 @@ React.js
 
 ```
 
-Name of feature: ________________________________
+Name of feature: 6.2 Locations
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 2 hours
 
-Start time: _____
+Start time: 14:15
 
-Finish time: _____
+Finish time: 17:30
 
-Actual time needed to complete: _____
+Actual time needed to complete: 3:15
 
+```
+
+```
+
+Name of feature: 6.3 Map
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 17:30
+
+Finish time: 20:15
+
+Actual time needed to complete: 2:45
+
+```
+
+```
+
+Name of feature: 6.4 Errors
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 20:45
+
+Finish time: 21:30
+
+Actual time needed to complete: :45
 
 ```
 
