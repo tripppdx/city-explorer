@@ -7,6 +7,8 @@
 
 1. Allow a user to view latitude and lon for a specified city.
 2. Render a map of the selected city.
+3. Add weather data for selected city.
+
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
 ## Getting Started
@@ -16,10 +18,43 @@
 ## Architecture
 
 React.js
+node.js
+
+![image](./public/wrrc.png)
+
+![image](./public/7.2.jpeg)
 
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
 ## Change Log
+
+```
+
+Name of feature: 7.3 Locations
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 16:00
+
+Finish time: 17:00
+
+Actual time needed to complete: 1 hour
+
+```
+
+```
+
+Name of feature: 7.2 Locations
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 12:15
+
+Finish time: 16:00 + 1day
+
+Actual time needed to complete: 27:45
+
+```
 
 ```
 
