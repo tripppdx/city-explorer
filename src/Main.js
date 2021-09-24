@@ -3,9 +3,13 @@ import Container from 'react-bootstrap/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Weather from './Weather.js';
+import Movies from './Movies.js';
+// require('dotenv').config();
 
 export default class Main extends Component {
   constructor(props) {
@@ -15,12 +19,11 @@ export default class Main extends Component {
       location: {},
       error: false,
       weatherData: [],
-      // mapUrl: '',
+      movieData: [],
     };
   }
   setSearchQuery = e => {
     e.preventDefault();
-    // console.log(e.target.city.value);
     this.setState(
       {
         searchQuery: e.target.city.value,
@@ -28,11 +31,9 @@ export default class Main extends Component {
       this.getLocation
     );
   };
+
   getLocation = async e => {
     const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchQuery}&format=json`;
-
-    // console.log(url);
-    // const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=10`;
 
     try {
       const response = await axios.get(url);
@@ -42,7 +43,6 @@ export default class Main extends Component {
         {
           location,
           error: false,
-          // mapUrl: mapUrl,
         },
         this.getForecast
       );
@@ -57,20 +57,36 @@ export default class Main extends Component {
   };
 
   getForecast = async () => {
-    // console.log(this.state.searchQuery);
-
     try {
-      const forecastUrl = `http://localhost:3001/weather?searchQuery=${this.state.searchQuery}`;
-
+      const forecastUrl = `${process.env.REACT_APP_API_URL}/weather?lat=${this.state.location.lat}&lon=${this.state.location.lon}`;
+      console.log(process.env.REACT_APP_API_URL);
       const daWeather = await axios.get(forecastUrl);
-      // console.log(daWeather.data);
-      // let weatherArray = daWeather.data;
-      // console.log(weatherArray);
+
       let weatherArray = daWeather.data.map(weather => {
         return weather;
       });
+      this.setState(
+        {
+          weatherData: weatherArray,
+        },
+        this.getMovies
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  getMovies = async () => {
+    try {
+      const moviesUrl = `${process.env.REACT_APP_API_URL}/movies?searchQuery=${this.state.searchQuery}`;
+
+      const moviesResponse = await axios.get(moviesUrl);
+      let moviesArray = moviesResponse.data.map(movie => {
+        return movie;
+      });
+      console.log(moviesArray);
       this.setState({
-        weatherData: weatherArray,
+        movieData: moviesArray,
       });
     } catch (err) {
       console.log(err);
@@ -78,7 +94,6 @@ export default class Main extends Component {
   };
 
   render() {
-    console.log(this.state.weatherData);
     return (
       <Container fluid>
         <Form onSubmit={this.setSearchQuery}>
@@ -97,14 +112,22 @@ export default class Main extends Component {
             <h2>The city is: {this.state.location.display_name}</h2>
             <h3>Latitude: {this.state.location.lat}</h3>
             <h3>Longitude: {this.state.location.lon}</h3>
+            {/* <Row xs={1} sm={2} md={3} lg={4}> */}
             <img
               src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=10`}
               alt={this.state.location.display_name}
             ></img>
+            <h3 className="text-center">Weather Forecast</h3>
             {this.state.weatherData.map(weather => (
               <Weather weather={weather} />
-              // <p> {weather.date}</p>
             ))}
+            {/* </Row> */}
+            <h3 className="text-center">Movies</h3>
+            <Row xs={1} sm={2} md={3} lg={4}>
+              {this.state.movieData.map(movie => (
+                <Movies movie={movie} />
+              ))}
+            </Row>
           </Container>
         )}
       </Container>

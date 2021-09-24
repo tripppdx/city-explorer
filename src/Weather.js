@@ -14,5 +14,3 @@ export default class Weather extends Component {
     );
   }
 }
-
-// return (<p> {this.props.weather.date} </p>;)
