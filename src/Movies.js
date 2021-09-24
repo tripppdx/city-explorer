@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
 
 export default class Movies extends Component {
   render() {
