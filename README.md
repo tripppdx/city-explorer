@@ -9,6 +9,7 @@
 2. Render a map of the selected city.
 3. Show weather data for selected city.
 4. Show movies about selected city.
+5. Refactor: Componentize the front-end codebase.
 
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
@@ -32,6 +33,20 @@ Netlify
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
 ## Change Log
+
+```
+
+Name of feature: 9.2 Refactor: Componentize the front-end codebase.
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 15:30
+
+Finish time: 17:45
+
+Actual time needed to complete: 2.25 hours
+
+```
 
 ```
 
