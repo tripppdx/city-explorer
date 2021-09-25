@@ -3,10 +3,10 @@ import Container from 'react-bootstrap/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
 
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
+import Location from './Location.js';
 import Weather from './Weather.js';
 import Movies from './Movies.js';
 // require('dotenv').config();
@@ -59,15 +59,11 @@ export default class Main extends Component {
   getForecast = async () => {
     try {
       const forecastUrl = `${process.env.REACT_APP_API_URL}/weather?lat=${this.state.location.lat}&lon=${this.state.location.lon}`;
-      console.log(process.env.REACT_APP_API_URL);
-      const daWeather = await axios.get(forecastUrl);
+      const weatherResponse = await axios.get(forecastUrl);
 
-      let weatherArray = daWeather.data.map(weather => {
-        return weather;
-      });
       this.setState(
         {
-          weatherData: weatherArray,
+          weatherData: weatherResponse.data,
         },
         this.getMovies
       );
@@ -84,7 +80,6 @@ export default class Main extends Component {
       let moviesArray = moviesResponse.data.map(movie => {
         return movie;
       });
-      console.log(moviesArray);
       this.setState({
         movieData: moviesArray,
       });
@@ -109,25 +104,11 @@ export default class Main extends Component {
         {this.state.error && <h2>Enter a valid city...</h2>}
         {this.state.location.place_id && (
           <Container fluid>
-            <h2>The city is: {this.state.location.display_name}</h2>
-            <h3>Latitude: {this.state.location.lat}</h3>
-            <h3>Longitude: {this.state.location.lon}</h3>
-            {/* <Row xs={1} sm={2} md={3} lg={4}> */}
-            <img
-              src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=10`}
-              alt={this.state.location.display_name}
-            ></img>
+            <Location location={this.state.location} />
             <h3 className="text-center">Weather Forecast</h3>
-            {this.state.weatherData.map(weather => (
-              <Weather weather={weather} />
-            ))}
-            {/* </Row> */}
+            <Weather weather={this.state.weatherData}></Weather>
             <h3 className="text-center">Movies</h3>
-            <Row xs={1} sm={2} md={3} lg={4}>
-              {this.state.movieData.map(movie => (
-                <Movies movie={movie} />
-              ))}
-            </Row>
+            <Movies movies={this.state.movieData}></Movies>
           </Container>
         )}
       </Container>
