@@ -6,8 +6,10 @@ export default class Movies extends Component {
   render() {
     return (
       <Row xs={1} sm={2} md={3} lg={4}>
-        {this.props.movies.map(movie => (
-          <MovieDay movie={movie}> </MovieDay>
+        {this.props.movies.map((movie, idx) => (
+          <MovieDay key={idx} movie={movie}>
+            {' '}
+          </MovieDay>
         ))}
       </Row>
     );
